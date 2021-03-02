@@ -8,14 +8,21 @@ rightshift = 0
 rightalt = 0
 
 def openfile():
+    global text
     filename = filedialog.askopenfilename()
     root.destroy()
     f = open(filename, 'r')
     data = f.readlines()
     print("DATA: " + '\n'.join(data))
+    print(data)
+    data = '\n'.join(data)
+    data = data.split('\n\n')
+    data = '\n'.join(data)
+    data = data.split('\n')
     text = data
     openname = filename
     #del filename,data
+    return(data)
 
 def save():
     global openname
