@@ -230,7 +230,6 @@ while not stop:
         pass
     display.fill(ui)
     combinedtext = '\n'.join(text)
-    print(combinedtext)
     tempmousexloc = round((pygame.mouse.get_pos()[0]-25)/11)
     tempmouseyloc = math.floor((pygame.mouse.get_pos()[1]-25)/18)
     cursorframe += 1
@@ -372,8 +371,9 @@ while not stop:
                 pos = (25,pos[1]+12*1.5)
                 sidenumberpos = (0,pos[1])
                 for i in range(0,len(text[cursory])):
-                    lolx = 0
+                    lolx = i
                     loly = cursory
+                    print("x, y, ss, se: " + str(lolx) + " " + str(loly) + " " + str(selectstart) + " " + str(selectend))
                     if lolx+getxbetween(loly) in range(selectstart,selectend):
                         display.blit(square,(((lolx-25)*11)+25),((loly-25)*18)+25)
 
