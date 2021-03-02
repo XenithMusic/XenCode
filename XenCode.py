@@ -10,11 +10,12 @@ rightalt = 0
 def openfile():
     filename = filedialog.askopenfilename()
     root.destroy()
-    f = open(filename)
-    text = f.read().split("\n")
+    f = open(filename, 'r')
+    data = f.readlines()
+    print("DATA: " + '\n'.join(data))
+    text = data
     openname = filename
-    del filename
-    return openname
+    #del filename,data
 
 def save():
     global openname
