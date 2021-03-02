@@ -11,8 +11,7 @@ def openfile():
     filename = filedialog.askopenfilename()
     root.destroy()
     f = open(filename)
-    text = f.read()
-    text = text.split("\n")
+    text = f.read().split("\n")
     openname = filename
     del filename
     return openname
