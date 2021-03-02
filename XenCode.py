@@ -368,8 +368,15 @@ while not stop:
                 time.sleep(0.05)
                 displaytext = font.render(wrapi,True,white)
                 displaynumber = font.render(str(i2+1),True,lightgray)
+                square = font.render("█",True,gray)
                 pos = (25,pos[1]+12*1.5)
                 sidenumberpos = (0,pos[1])
+                for i in range(0,len(text[cursory])):
+                    lolx = 0
+                    loly = cursory
+                    if lolx+getxbetween(loly) in range(selectstart,selectend):
+                        display.blit(square,(((lolx-25)*11)+25),((loly-25)*18)+25)
+
                 display.blit(displaytext,pos)
                 pos = (pos[0]-5+(11*cursorx),pos[1])
                 displaybar = font.render("|",True,white)
