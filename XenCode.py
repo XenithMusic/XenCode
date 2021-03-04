@@ -230,6 +230,7 @@ while not stop:
         pass
     display.fill(ui)
     combinedtext = '\n'.join(text)
+    print("IMPORTANT: " + str((pygame.mouse.get_pos()[0]-25)/11))
     tempmousexloc = round((pygame.mouse.get_pos()[0]-25)/11)
     tempmouseyloc = math.floor((pygame.mouse.get_pos()[1]-25)/18)
     cursorframe += 1
