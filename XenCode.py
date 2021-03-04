@@ -241,7 +241,12 @@ while not stop:
         if tempmousexloc in range(0 ,len(text[tempmouseyloc-1])+1):
             pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_IBEAM)
             if selecting == 1:
-                selectend = (tempmousexloc+getxbetween(tempmouseyloc-1))
+                selectframe += 1
+                if selectframe > 1:
+                    selectend = (tempmousexloc+getxbetween(tempmouseyloc-1))
+            else:
+                selectframe = 0
+
         else:
             pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
     else:
@@ -368,9 +373,9 @@ while not stop:
                 time.sleep(0.05)
                 displaytext = font.render(wrapi,True,white)
                 displaynumber = font.render(str(i2+1),True,lightgray)
-                square = font.render("█",True,gray)
                 pos = (25,pos[1]+12*1.5)
                 sidenumberpos = (0,pos[1])
+                square = font.render("█",True,gray)
                 for i in range(0,len(text[cursory])):
                     lolx = i
                     loly = cursory
@@ -386,7 +391,7 @@ while not stop:
                     display.blit(displaybar,pos)
                 display.blit(displaynumber,sidenumberpos)
             else:
-                wrappingindex = []
+                wrappingindex = 0
                 while len(wrappingi) >= charsforwrapx:
                     wrappingindex += 1
                     wrappingi.append(i[:81*wrappingindex])
@@ -400,10 +405,11 @@ while not stop:
                     displaytext = font.render(wrapi,True,white)
                     pos = (25,pos[1]+12*1.5)
                     sidenumberpos = (0,pos[1])
+                    print("WRAPPINGINDEX: " + str(wrappingindex))
                     square = font.render("█",True,gray)
-                    for i in range(0,len(text[cursory])):
+                    for i in range(0,len(text[wrappingindex])):
                         lolx = i
-                        loly = cursory
+                        loly = wrappingindex
                         lolxy = lolx+getxbetween(loly)
                         print("x, y, ss, se: " + str(lolx) + " " + str(loly) + " " + str(selectstart) + " " + str(selectend))
                         if lolxy in range(selectstart,selectend):
