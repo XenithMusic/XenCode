@@ -269,8 +269,8 @@ while not stop:
         if e.type == pygame.MOUSEBUTTONUP:
             if e.button == 1:
                 try:
-                    selecting = 0
                     selectend = tempmousexloc+getxbetween(tempmouseyloc)
+                    selecting = 0
                 except:
                     pass
                 if selectstart == selectend:
@@ -374,9 +374,10 @@ while not stop:
                 for i in range(0,len(text[cursory])):
                     lolx = i
                     loly = cursory
+                    lolxy = lolx+getxbetween(loly)
                     print("x, y, ss, se: " + str(lolx) + " " + str(loly) + " " + str(selectstart) + " " + str(selectend))
-                    if lolx+getxbetween(loly) in range(selectstart,selectend):
-                        display.blit(square,(((lolx-25)*11)+25),((loly-25)*18)+25)
+                    if lolxy in range(selectstart,selectend):
+                        display.blit(square,((lolx*11)+25,(loly*18)+43))
 
                 display.blit(displaytext,pos)
                 pos = (pos[0]-5+(11*cursorx),pos[1])
