@@ -404,19 +404,27 @@ while not stop:
                     displaynumber = font.render(str(i2+1),True,gray)
                     displaytext = font.render(wrapi,True,white)
                     pos = (25,pos[1]+12*1.5)
-                    sidenumberpos = (0,pos[1])
                     print("WRAPPINGINDEX: " + str(wrappingindex))
                     square = font.render("█",True,gray)
                     for i in range(0,len(text[wrappingindex])):
-                        lolx = i
+                        lolx = i2
                         loly = wrappingindex
                         lolxy = lolx+getxbetween(loly)
                         print("x, y, ss, se: " + str(lolx) + " " + str(loly) + " " + str(selectstart) + " " + str(selectend))
                         if lolxy in range(selectstart,selectend):
                             display.blit(square,((lolx*11)+25,(loly*18)+43))
+                    sidenumberpos = (0,pos[1])
                     display.blit(displaytext,pos)
                     display.blit(displaynumber,sidenumberpos)
     pygame.display.flip()
     clock.tick(60)
 
 pygame.quit()
+
+#
+#
+#
+#
+#
+#
+#
