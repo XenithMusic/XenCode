@@ -241,7 +241,7 @@ while not stop:
         if tempmousexloc in range(0 ,len(text[tempmouseyloc-1])+1):
             pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_IBEAM)
             if selecting == 1:
-                selectend = tempmousexloc+getxbetween(tempmouseyloc)
+                selectend = (tempmousexloc+getxbetween(tempmouseyloc-1))
         else:
             pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
     else:
@@ -263,13 +263,13 @@ while not stop:
             if e.button == 1:
                 try:
                     selecting = 1
-                    selectstart = tempmousexloc+getxbetween(tempmouseyloc)
+                    selectstart = tempmousexloc+getxbetween(tempmouseyloc-1)
                 except:
                     pass
         if e.type == pygame.MOUSEBUTTONUP:
             if e.button == 1:
                 try:
-                    selectend = tempmousexloc+getxbetween(tempmouseyloc)
+                    selectend = tempmousexloc+getxbetween(tempmouseyloc-1)
                     selecting = 0
                 except:
                     pass
@@ -391,12 +391,23 @@ while not stop:
                     wrappingindex += 1
                     wrappingi.append(i[:81*wrappingindex])
 
+                if wrappingindex == 0:
+                    wrappingi = [i]
+
 
                 for wrapi in wrappingi:
                     displaynumber = font.render(str(i2+1),True,gray)
                     displaytext = font.render(wrapi,True,white)
                     pos = (25,pos[1]+12*1.5)
                     sidenumberpos = (0,pos[1])
+                    square = font.render("█",True,gray)
+                    for i in range(0,len(text[cursory])):
+                        lolx = i
+                        loly = cursory
+                        lolxy = lolx+getxbetween(loly)
+                        print("x, y, ss, se: " + str(lolx) + " " + str(loly) + " " + str(selectstart) + " " + str(selectend))
+                        if lolxy in range(selectstart,selectend):
+                            display.blit(square,((lolx*11)+25,(loly*18)+43))
                     display.blit(displaytext,pos)
                     display.blit(displaynumber,sidenumberpos)
     pygame.display.flip()
